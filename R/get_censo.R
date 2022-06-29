@@ -1,14 +1,14 @@
 get_censo <- function (state, savedir = tempdir ()) {
-  
+
   if (!dir.exists (savedir)) {
     savedir <- tempdir ()
     message (paste0 ("The directory provided does not exist, so the directory was set to '", savedir), "'.")
   }
-  
+
   if (substr (savedir, nchar (savedir), nchar (savedir)) == "/" | substr (savedir, nchar (savedir), nchar (savedir)) == "\\") {
     savedir <- substr (savedir, 1, nchar (savedir) - 1)
   }
-  
+
   ftpdata <- paste0 ("https://ftp.ibge.gov.br/Censos/Censo_Demografico_2010/Resultados_Gerais_da_Amostra/Microdados/", state, ".zip")
   if (!projmgr::check_internet ()) {
     message ("The internet connection is unavailable.")
@@ -39,7 +39,7 @@ get_censo <- function (state, savedir = tempdir ()) {
   }
   utils::unzip (zipfile = paste0 (savedir, "/", dataname), exdir = savedir)
   docfiles <- unlist (strsplit (unlist (strsplit (unlist (strsplit (gsub ("\r\n", "\n", RCurl::getURL (ftpdata), dirlistonly = TRUE)), "\n")), "<a href=[[:punct:]]")), ".zip")
-  utils::download.file (url = "https://1drv.ms/u/s!Ao1PchZ3QNaIi9QUe19L88CCHHGKoQ?e=FdGxm1/input.zip", destfile = paste0 (savedir, "input.zip"), mode = "wb")
+  utils::download.file (url = "https://raw.githubusercontent.com/AlexandreLoures/Censo2010Persons/main/auxiliary/input.zip", destfile = paste0 (savedir, "input.zip"), mode = "wb")
   utils::unzip (zipfile = paste0 (savedir, "/input.zip"), exdir = savedir)
   microdataname <- dir (savedir, pattern = paste0 ("^Amostra_Pessoas_", 12, ".*\\.txt$"), ignore.case = FALSE)
   microdatafile <- paste0 (savedir, "/", microdataname)
