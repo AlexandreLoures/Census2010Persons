@@ -1,0 +1,25 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated form README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+library (covid19brazil)
+
+knitr::opts_chunk$set (
+collapse = TRUE,
+comment = "#",
+fig.path = "figures/README-",
+out.width = "100%"
+)
+```
+
+# Censo2010Persons
+
+<!-- badges: start -->
+
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+[![License: Mit](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
+# Installation

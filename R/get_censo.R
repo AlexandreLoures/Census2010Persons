@@ -38,9 +38,10 @@ get_censo <- function (state, savedir = tempdir ()) {
     return (NULL)
   }
   utils::unzip (zipfile = paste0 (savedir, "/", dataname), exdir = savedir)
-  docfiles <- unlist (strsplit (unlist (strsplit (unlist (strsplit (gsub ("\r\n", "\n", RCurl::getURL (ftpdata), dirlistonly = TRUE)), "\n")), "<a href=[[:punct:]]")), ".zip")
-  utils::download.file (url = "https://raw.githubusercontent.com/AlexandreLoures/Censo2010Persons/main/auxiliary/input.zip", destfile = paste0 (savedir, "input.zip"), mode = "wb")
-  utils::unzip (zipfile = paste0 (savedir, "/input.zip"), exdir = savedir)
+
+  utils::download.file (url = "https://raw.githubusercontent.com/AlexandreLoures/Censo2010Persons/main/auxiliary/dictionary_and_input.zip"
+                        , destfile = paste0 (savedir, "/dictionary_and_input.zip"), mode = "wb")
+  utils::unzip (zipfile = paste0 (savedir, "/dictionary_and_input.zip"), exdir = savedir)
   microdataname <- dir (savedir, pattern = paste0 ("^Amostra_Pessoas_", 12, ".*\\.txt$"), ignore.case = FALSE)
   microdatafile <- paste0 (savedir, "/", microdataname)
   microdatafile <- rownames (file.info (microdatafile)[order(file.info (microdatafile)$ctime),])[length (microdatafile)]
@@ -48,4 +49,15 @@ get_censo <- function (state, savedir = tempdir ()) {
   inputfile <- paste0 (savedir, "/", inputname)
   inputfile <- rownames (file.info (inputfile)[order (file.info (inputfile)$ctime),])[length (inputfile)]
   data_censo <- Censo2010Persons::read_censo (microdata = microdatafile, input_txt = inputfile, vars = vars)
+  if (labels == TRUE) {
+    if (exists ("censo_labeller", where = "package:Censo2010Persons", mode = "function")) {
+      dicname <- dir (savedir, pattern = paste0 ("^Microdata_Layout_Persons_Sample.*\\.xls"), ignore.case = FALSE)
+      dicfile <- paste0 (savedir, "/", dicname)
+      dicfile <- rownames (file.info (dicfile)[order (file.info (dicfile)$ctime),])[length (dicfile)]
+      data_censo <- Censo2010Persons::censo_labeller (data_censo = data_censo, dictionary.file = dicfile)
+    }
+    else {
+      message ("Labeller function is unavailable in package Censo2010Persons")
+    }
+  }
 }
