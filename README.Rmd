@@ -29,17 +29,17 @@ knitr::opts_chunk$set (
 
 # Installation
 
-To install the `package`, one of the two standard methods for installing `packages`in R can be adopted. Directly through the [cran](https://cran.r-project.org/package=covid19brazil) (choosing the closest repository):
+To install the `package`, one of the two standard methods for installing `packages`in R can be adopted. Directly through the [cran](https://cran.r-project.org/package=Census2010Persons) (choosing the closest repository):
 
 ``` r
-install.packages ("covid19brazil")
+install.packages ("Census2010Persons")
 ```
 
 Or even using the command below. In the latter case, the latest version of the `package` will be installed.
 
 ``` r
 # install.packages ("devtools")
-devtools::install_github ("AlexandreLoures/covid19brazil")
+devtools::install_github ("AlexandreLoures/Census2010Persons")
 ```
 # The update_data command
 
