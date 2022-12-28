@@ -36,8 +36,8 @@ devtools::install_github ("AlexandreLoures/Census2010Persons")
 
 # Download, read and analyze the microdata
 
-The purpose of this package is to provide a user-friendly tool for R
+The purpose of this `package` is to provide a user-friendly tool for R
 users to download, read and analyse the 2010 Brazilian Census (Persons
 Census). These microdata were collected by the Instituto Brasileiro de
 Geografia e Estatística (IBGE) and are available on the official
-website: [IBGE](https://ibge.gov.br/).
+website: <https://ibge.gov.br/>.
