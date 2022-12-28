@@ -27,17 +27,6 @@ knitr::opts_chunk$set (
 [![](https://cranlogs.r-pkg.org/badges/grand-total/Census2010Persons?color=blue)](https://cran.r-project.org/package=Census2010Persons)
 <!-- badges: end -->
 
-The `covid19brazil` R package has daily information on the number of accumulated cases and accumulated deaths for the COVID-19 pandemic in Brazil. The information available in the package is organized as follows:
-
-* `brazil_total` - Dataset with information about the new Coronavirus (COVID-19) for Brazil as a whole
-* `brazil_region` - Dataset with information on the new Coronavirus (COVID-19) for the five regions of Brazil
-* `brazil_state` - Information on the new Coronavirus (COVID-19) for the twenty-seven Federative Units of Brazil
-* `brazil_municipality` - Information on the new Coronavirus (COVID-19) for the 5,570 municipalities in Brazil
-
-## Base limitation for municipalities (only for municipalities):
-
-**At the municipal level, the current day's data may be lower than the previous day's: this happens because the notification municipality is not necessarily the same place of residence of the notified case or death. Thus, upon completing the investigation process of each individual occurrence, the Municipal and State Health Departments have the autonomy to correct the information and pass it on to the Ministry of Health. Therefore, in all bases the current day's data may be smaller than the previous day's data.**
-
 # Installation
 
 To install the `package`, one of the two standard methods for installing `packages`in R can be adopted. Directly through the [cran](https://cran.r-project.org/package=covid19brazil) (choosing the closest repository):
