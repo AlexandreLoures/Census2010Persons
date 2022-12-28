@@ -44,4 +44,4 @@ devtools::install_github ("AlexandreLoures/Census2010Persons")
 
 # Download, read and analyze the microdata
 
-The purpose of this section is to analyze data on cases, deaths, proportions and geographic distribution on the COVID-19 pandemic in Brazil, made available by the [Ministerio da Saude - Sistema Unico de Saude (SUS)](https://www.gov.br/saude/pt-br). Data are available as of 2020-01-30, when the first suspected case appeared in Brazil.
+The purpose of this package is to provide a user-friendly tool for R users to download, read and analyse the 2010 Brazilian Census (Persons Census). These microdata were collected by the Instituto Brasileiro de Geografia e Estatística (IBGE) and are available on the official website: [IBGE](https://ibge.gov.br/).
