@@ -5,7 +5,7 @@ output: github_document
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r, include = FALSE}
-library (Census2010Persons)
+library (Censo2010Persons)
 
 knitr::opts_chunk$set (
 	collapse = TRUE,
