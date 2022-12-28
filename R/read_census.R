@@ -19,7 +19,7 @@
 #'
 #' @export
 
-read_censo <- function (microdata, input_txt, vars = NULL) {
+read_census <- function (microdata, input_txt, vars = NULL) {
   X1 = X2 = X3 = start = end = NULL
   input <- suppressWarnings (suppressMessages ({readr::read_table (input_txt, col_names = FALSE) %>% subset (substr (X1, 1, 1) == "@") %>%
       dplyr::mutate (type = ifelse (substr (X3, 1, 1) == "$", "c", "d"), start = as.numeric (gsub ("@", "", X1)), X3 = as.integer (chartr ("$", " ", X3)),
@@ -80,6 +80,6 @@ read_censo <- function (microdata, input_txt, vars = NULL) {
                                   "M0605", "M6462", "M6472", "V1005", vars))
   }
   columns <- input %$% readr::fwf_positions (start, end, X2)
-  data_censo <- suppressWarnings (readr::read_fwf (microdata, columns, col_types = paste0 (input$type, collapse = "")))
-  return (data_censo)
+  data_census <- suppressWarnings (readr::read_fwf (microdata, columns, col_types = paste0 (input$type, collapse = "")))
+  return (data_census)
 }
