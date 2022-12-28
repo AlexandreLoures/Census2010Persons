@@ -9,15 +9,15 @@
 #' @importFrom magrittr %<>%
 #' @importFrom magrittr %$%
 #'
-#' @param data_censo An object of the 2010 Census persons microdata read with
+#' @param data_census An object of the 2010 Census persons microdata read with
 #' \code{read_censo} function.
 #' @param dictionary.file The dictionary file for selected survey available on
 #' official website: \url{https://ftp.ibge.gov.br/Censos/Censo_Demografico_2010/Resultados_Gerais_da_Amostra/Microdados/}
 #'
 #' @export
 
-censo_labeller <- function (data_censo, dictionary.file) {
-  if (sum (class (data_censo) == "tbl_df") > 0 ) {
+census_labeller <- function (data_census, dictionary.file) {
+  if (sum (class (data_census) == "tbl_df") > 0 ) {
     dictionary <- suppressMessages (readxl::read_excel (dictionary.file))
     X_3 = X_6 = X_7 = NULL
     colnames (dictionary) <- paste0 ("X_", 1:dim (dictionary)[2])
@@ -80,12 +80,12 @@ censo_labeller <- function (data_censo, dictionary.file) {
                    "M6682", "M0669", "M6691", "M6692", "M6693",
                    "M0670", "M0671", "M6800", "M6121", "M0604",
                    "M0605", "M6462", "M6472", "V1005")
-    vars <- names (data_censo)
-    varsc <- vars[sapply (data_censo, class) == "character"]
+    vars <- names (data_census)
+    varsc <- vars[sapply (data_census, class) == "character"]
     varsf <- setdiff (varsc, notlabel)
     for (i in 1:length (varsf)) {
       if (i > 0 & varsf[i] %in% (dictionary$X_3)) {
-        data_censo[varsf[i]] <- factor (suppressWarnings (as.numeric (unlist (data_censo[varsf[i]]))),
+        data_census[varsf[i]] <- factor (suppressWarnings (as.numeric (unlist (data_census[varsf[i]]))),
                                         levels = suppressWarnings (as.numeric (unlist (dictionary %>% subset (X_3 == varsf[i]) %>% select (X_6)))),
                                                                    labels = unlist (dictionary %>% subset (X_3 == varsf[i]) %>% select (X_7)))
       }
@@ -95,5 +95,5 @@ censo_labeller <- function (data_censo, dictionary.file) {
     message ("The microdata object is not of the tibble class or sample design was already defined for microdata, so labeling categorical variables
              is not possible.")
   }
-  return (data_censo)
+  return (data_census)
 }
