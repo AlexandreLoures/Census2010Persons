@@ -1,12 +1,30 @@
+#' Label microdata variables 2010 Census persons
+#'
+#' @description This function will label the microdata variables refering to
+#' available information about the individuals of each of the households
+#' available in the 2010 Census.
+#'
+#' @import dplyr httr magrittr projmgr readr readxl timeDate utils
+#' @importFrom magrittr %>%
+#' @importFrom magrittr %<>%
+#' @importFrom magrittr %$%
+#'
+#' @param data_censo An object of the 2010 Census persons microdata read with
+#' \code{read_censo} function.
+#' @param dictionary.file The dictionary file for selected survey available on
+#' official website: \url{https://ftp.ibge.gov.br/Censos/Censo_Demografico_2010/Resultados_Gerais_da_Amostra/Microdados/}
+#'
+#' @export
+
 censo_labeller <- function (data_censo, dictionary.file) {
-  if (sum (class (data_censo) == "tbl_df") >0 ) {
+  if (sum (class (data_censo) == "tbl_df") > 0 ) {
     dictionary <- suppressMessages (readxl::read_excel (dictionary.file))
     X_3 = X_6 = X_7 = NULL
     colnames (dictionary) <- paste0 ("X_", 1:dim (dictionary)[2])
     dictionary %<>% subset (!is.na (X_6))
     codcurrent <- dictionary$X_3
     for (i in 1:dim (dictionary)[1]) {
-      if (is.na (dicitionary$X_3[i])) {
+      if (is.na (dictionary$X_3[i])) {
         dictionary$X_3[i] <- codcurrent
       }
       else {

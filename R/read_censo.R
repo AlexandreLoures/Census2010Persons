@@ -1,3 +1,24 @@
+#' Read microdata persons 2010 Census
+#'
+#' @description This function will read the microdata refering to the
+#' information available on the individuals of each of the households
+#' available in the 2010 Census.
+#'
+#' @import dplyr httr magrittr projmgr readr readxl timeDate utils
+#' @importFrom magrittr %>%
+#' @importFrom magrittr %<>%
+#' @importFrom magrittr %$%
+#'
+#' @param microdata A text file containing microdata from 2010 Census persons
+#' survey, available on official website: \url{https://ftp.ibge.gov.br/Censos/Censo_Demografico_2010/Resultados_Gerais_da_Amostra/Microdados/}
+#' @param input_txt A text file, related to the microdata from 2010 Census
+#' persons, containing the input script for SAS, available on the official
+#' website: \url{https://ftp.ibge.gov.br/Censos/Censo_Demografico_2010/Resultados_Gerais_da_Amostra/Microdados/}
+#' @param vars Vector of variable names to be kept for analysis. Default is to
+#' keep all variables.
+#'
+#' @export
+
 read_censo <- function (microdata, input_txt, vars = NULL) {
   X1 = X2 = X3 = start = end = NULL
   input <- suppressWarnings (suppressMessages ({readr::read_table (input_txt, col_names = FALSE) %>% subset (substr (X1, 1, 1) == "@") %>%

@@ -1,11 +1,38 @@
 Package: Censo2010Persons
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Demystifying the Brazilian population - 2010 Census persons
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Authors@R: person ("Alexandre",
+                   "Loures",
+                   comment = c(ORCID = "https://orcid.org/
+                   0000-0002-1288-0135"),
+                   role = c("aut", "cre"),
+                   email = "alexandre.loures@protonmail.com")
+Maintainer: Alexandre Loures <alexandre.loures@protonmail.com>
+Description: A system to download, read and analyse the microdata
+    of the 2010 Census persons. This research is carried out by the
+    Instituto Brasileiro de Geografia e Estatistica (IBGE). The
+    microdata are downloaded directly from the official IBGE
+    website: <https://www.ibge.gov.br/>.
+License: GPL-3
 Encoding: UTF-8
+Language: English
 LazyData: true
+Depends: R (>= 3.5.0)
+Imports:
+    dplyr,
+    httr,
+    magrittr,
+    projmgr,
+    readr,
+    readxl,
+    timeDate,
+    utils
+Suggests:
+    rmarkdown (>= 2.1),
+    testthat (>= 2.1.0)
+URL: https://github.com/AlexandreLoures/Censon2010Persons
+BugReports: https://github/AlexandreLoures/Censon2010Persons/issues
+RoxygenNote: 7.1.2
+NeedsCompilation: no
+Repository: CRAN

@@ -1,4 +1,23 @@
-get_censo <- function (state, savedir = tempdir ()) {
+#' Download and label for microdata persons 2010 Census
+#'
+#' @description This function will download and label the microdata refering
+#' to the available information about the individuals of each of the households
+#' available in the 2010 Census.
+#'
+#' @import dplyr httr magrittr projmgr readr readxl timeDate utils
+#' @importFrom magrittr %>%
+#' @importFrom magrittr %<>%
+#' @importFrom magrittr %$%
+#'
+#' @param state Vector of the states for which you want to obtain the microdata
+#' @param vars Vector of variable names to be kept for analysis. Default is to
+#'  kept all variables
+#' @param savedir Directory to save the download data. Default is to use a
+#' temporary directory
+#'
+#' @export
+
+get_censo <- function (state, vars = NULL, savedir = tempdir ()) {
 
   if (!dir.exists (savedir)) {
     savedir <- tempdir ()
@@ -60,4 +79,5 @@ get_censo <- function (state, savedir = tempdir ()) {
       message ("Labeller function is unavailable in package Censo2010Persons")
     }
   }
+  return (data_censo)
 }
