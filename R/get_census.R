@@ -17,7 +17,7 @@
 #'
 #' @export
 
-get_censo <- function (state, vars = NULL, savedir = tempdir ()) {
+get_census <- function (state, vars = NULL, savedir = tempdir ()) {
 
   if (!dir.exists (savedir)) {
     savedir <- tempdir ()
@@ -58,7 +58,7 @@ get_censo <- function (state, vars = NULL, savedir = tempdir ()) {
   }
   utils::unzip (zipfile = paste0 (savedir, "/", dataname), exdir = savedir)
 
-  utils::download.file (url = "https://raw.githubusercontent.com/AlexandreLoures/Censo2010Persons/main/auxiliary/dictionary_and_input.zip"
+  utils::download.file (url = "https://raw.githubusercontent.com/AlexandreLoures/Census2010Persons/main/auxiliary/dictionary_and_input.zip"
                         , destfile = paste0 (savedir, "/dictionary_and_input.zip"), mode = "wb")
   utils::unzip (zipfile = paste0 (savedir, "/dictionary_and_input.zip"), exdir = savedir)
   microdataname <- dir (savedir, pattern = paste0 ("^Amostra_Pessoas_", 12, ".*\\.txt$"), ignore.case = FALSE)
@@ -67,17 +67,17 @@ get_censo <- function (state, vars = NULL, savedir = tempdir ()) {
   inputname <- dir (savedir, pattern = ("^input.*\\.txt$"), ignore.case = FALSE)
   inputfile <- paste0 (savedir, "/", inputname)
   inputfile <- rownames (file.info (inputfile)[order (file.info (inputfile)$ctime),])[length (inputfile)]
-  data_censo <- Censo2010Persons::read_censo (microdata = microdatafile, input_txt = inputfile, vars = vars)
+  data_census <- Census2010Persons::read_census (microdata = microdatafile, input_txt = inputfile, vars = vars)
   if (labels == TRUE) {
-    if (exists ("censo_labeller", where = "package:Censo2010Persons", mode = "function")) {
+    if (exists ("census_labeller", where = "package:Census2010Persons", mode = "function")) {
       dicname <- dir (savedir, pattern = paste0 ("^Microdata_Layout_Persons_Sample.*\\.xls"), ignore.case = FALSE)
       dicfile <- paste0 (savedir, "/", dicname)
       dicfile <- rownames (file.info (dicfile)[order (file.info (dicfile)$ctime),])[length (dicfile)]
-      data_censo <- Censo2010Persons::censo_labeller (data_censo = data_censo, dictionary.file = dicfile)
+      data_census <- Census2010Persons::census_labeller (data_census = data_census, dictionary.file = dicfile)
     }
     else {
-      message ("Labeller function is unavailable in package Censo2010Persons")
+      message ("Labeller function is unavailable in package Census2010Persons")
     }
   }
-  return (data_censo)
+  return (data_census)
 }
