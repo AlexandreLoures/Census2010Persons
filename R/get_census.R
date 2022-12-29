@@ -58,8 +58,10 @@ get_census <- function (state, vars = NULL, savedir = tempdir ()) {
   }
   utils::unzip (zipfile = paste0 (savedir, "/", dataname), exdir = savedir)
 
-  utils::download.file ("https://raw.githubusercontent.com/AlexandreLoures/Census2010Persons/main/auxiliary/dictionary_and_input.zip"
-                        , destfile = paste0 (savedir, "/dictionary_and_input.zip"), mode = "wb")
+  ftpdir <- ("https://raw.githubusercontent.com/AlexandreLoures/Census2010Persons/main/auxiliary/")
+
+  # utils::download.file ("https://raw.githubusercontent.com/AlexandreLoures/Census2010Persons/main/auxiliary/dictionary_and_input.zip"
+  #                       , destfile = paste0 (savedir, "/dictionary_and_input.zip"), mode = "wb")
   utils::unzip (zipfile = paste0 (savedir, "/dictionary_and_input.zip"), exdir = savedir)
   microdataname <- dir (savedir, pattern = paste0 ("^Amostra_Pessoas_", 12, ".*\\.txt$"), ignore.case = FALSE)
   microdatafile <- paste0 (savedir, "/", microdataname)
