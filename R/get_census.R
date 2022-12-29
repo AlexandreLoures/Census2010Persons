@@ -60,6 +60,9 @@ get_census <- function (state, vars = NULL, savedir = tempdir ()) {
 
   ftpdir <- ("https://raw.githubusercontent.com/AlexandreLoures/Census2010Persons/main/auxiliary/")
 
+  inputzip <- paste0 (docfiles [which (startsWith (docfiles, "dictionary_and_input"))], ".zip")
+  utils::download.file (url = paste0 (ftpdir, "Documentacao/", inputzip), destfile = paste0 (savedir, "/dictionary_and_input.zip"), mode = "wb")
+
   # utils::download.file ("https://raw.githubusercontent.com/AlexandreLoures/Census2010Persons/main/auxiliary/dictionary_and_input.zip"
   #                       , destfile = paste0 (savedir, "/dictionary_and_input.zip"), mode = "wb")
   utils::unzip (zipfile = paste0 (savedir, "/dictionary_and_input.zip"), exdir = savedir)
