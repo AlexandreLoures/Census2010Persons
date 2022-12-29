@@ -58,12 +58,15 @@ get_census <- function (state, vars = NULL, savedir = tempdir ()) {
   }
   utils::unzip (zipfile = paste0 (savedir, "/", dataname), exdir = savedir)
 
-  ftpdir <- ("https://raw.githubusercontent.com/AlexandreLoures/Census2010Persons/main/auxiliary/")
-  docfiles <- unlist (strsplit (unlist (strsplit (unlist (strsplit (gsub ("\r\n", "\n", RCurl::getURL (paste0 (ftpdir, "Documentacao/"), dirlistonly = TRUE))
-                                                                    , "\n")), "<a href = [[:punct:]]")), ".zip"))
+  # ftpdir <- ("https://raw.githubusercontent.com/AlexandreLoures/Census2010Persons/main/auxiliary/")
+  # docfiles <- unlist (strsplit (unlist (strsplit (unlist (strsplit (gsub ("\r\n", "\n", RCurl::getURL (paste0 (ftpdir, "Documentacao/"), dirlistonly = TRUE))
+  #                                                                   , "\n")), "<a href = [[:punct:]]")), ".zip"))
 
-  inputzip <- paste0 (docfiles [which (startsWith (docfiles, "dictionary_and_input"))], ".zip")
-  utils::download.file (url = paste0 (ftpdir, "Documentacao/", inputzip), destfile = paste0 (savedir, "/dictionary_and_input.zip"), mode = "wb")
+  # inputzip <- paste0 (docfiles [which (startsWith (docfiles, "dictionary_and_input"))], ".zip")
+  # utils::download.file (url = paste0 (ftpdir, "Documentacao/", inputzip), destfile = paste0 (savedir, "/dictionary_and_input.zip"), mode = "wb")
+
+  utils::download.file ("https://github.com/AlexandreLoures/Census2010Persons/tree/main/auxiliary/Documentacao"
+                        , destfile = paste0 (savedir, "/dictionary_and_input.zip"), mode = "wb")
 
   # utils::download.file ("https://raw.githubusercontent.com/AlexandreLoures/Census2010Persons/main/auxiliary/dictionary_and_input.zip"
   #                       , destfile = paste0 (savedir, "/dictionary_and_input.zip"), mode = "wb")
