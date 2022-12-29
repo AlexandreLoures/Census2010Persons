@@ -59,7 +59,7 @@ get_census <- function (state, vars = NULL, savedir = tempdir ()) {
   utils::unzip (zipfile = paste0 (savedir, "/", dataname), exdir = savedir)
 
   ftpdir <- ("https://raw.githubusercontent.com/AlexandreLoures/Census2010Persons/main/auxiliary/")
-  docfiles <- unlist (strsplit (unlist (strsplit (unlist (strsplit (gsub ("\r\n", "\n", RCurl::getURL (paste0 (ftpdir, "Documentacao"), dirlistonly = TRUE))
+  docfiles <- unlist (strsplit (unlist (strsplit (unlist (strsplit (gsub ("\r\n", "\n", RCurl::getURL (paste0 (ftpdir, "Documentacao/"), dirlistonly = TRUE))
                                                                     , "\n")), "<a href = [[:punct:]]")), ".zip"))
 
   inputzip <- paste0 (docfiles [which (startsWith (docfiles, "dictionary_and_input"))], ".zip")
