@@ -67,10 +67,6 @@ get_census <- function (state, vars = NULL, savedir = tempdir ()) {
 
   utils::download.file (url = "https://github.com/AlexandreLoures/Census2010Persons/tree/main/auxiliary/dictionary_and_input.zip"
                        , destfile = paste0 (savedir, "/documentation"), mode = "wb")
-  if (suppressWarnings (class (try (utils::unzip (zipfile = paste0 (savedir, "/documentation"), exdir = savedir), silent = TRUE)) == "try-error")) {
-    message ("The directory defined to save the download data is denied permission to overwrite the existing files, please clear or change this directory.")
-    return (NULL)
-  }
   # utils::download.file ("https://raw.githubusercontent.com/AlexandreLoures/Census2010Persons/main/auxiliary/dictionary_and_input.zip"
   #                       , destfile = paste0 (savedir, "/dictionary_and_input.zip"), mode = "wb")
   utils::unzip (zipfile = paste0 (savedir, "/documentation"), exdir = savedir)
