@@ -64,7 +64,7 @@ get_census <- function (state, vars = NULL, savedir = tempdir ()) {
   microdataname <- dir (savedir, pattern = paste0 ("^Amostra_Pessoas_", 12, ".*\\.txt$"), ignore.case = FALSE)
   microdatafile <- paste0 (savedir, "/", microdataname)
   microdatafile <- rownames (file.info (microdatafile)[order(file.info (microdatafile)$ctime),])[length (microdatafile)]
-  inputname <- dir (savedir, pattern = ("^input.*\\.txt$"), ignore.case = FALSE)
+  inputname <- dir (savedir, pattern = paste0 ("^input.*\\.txt$"), ignore.case = FALSE)
   inputfile <- paste0 (savedir, "/", inputname)
   inputfile <- rownames (file.info (inputfile)[order (file.info (inputfile)$ctime),])[length (inputfile)]
   data_census <- Census2010Persons::read_census (microdata = microdatafile, input_txt = inputfile, vars = vars)
