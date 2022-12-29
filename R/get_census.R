@@ -58,15 +58,19 @@ get_census <- function (state, vars = NULL, savedir = tempdir ()) {
   }
   utils::unzip (zipfile = paste0 (savedir, "/", dataname), exdir = savedir)
 
-  ftpdir <- ("https://github.com/AlexandreLoures/Census2010Persons/main/auxiliary/")
-  docfiles <- unlist (strsplit (unlist (strsplit (unlist (strsplit (gsub ("\r\n", "\n", RCurl::getURL (paste0 (ftpdir, "Documentacao/"), dirlistonly = TRUE))
-                                                                     , "\n")), "<a href = [[:punct:]]")), ".zip"))
+  # ftpdir <- ("https://github.com/AlexandreLoures/Census2010Persons/main/auxiliary/")
+  # docfiles <- unlist (strsplit (unlist (strsplit (unlist (strsplit (gsub ("\r\n", "\n", RCurl::getURL (paste0 (ftpdir, "Documentacao/"), dirlistonly = TRUE))
+  #                                                                    , "\n")), "<a href = [[:punct:]]")), ".zip"))
 
-  inputzip <- paste0 (docfiles [which (startsWith (docfiles, "dictionary_and_input"))], ".zip")
-  utils::download.file (url = paste0 (ftpdir, "Documentacao/", inputzip), destfile = paste0 (savedir, "/dictionary_and_input.zip"), mode = "wb")
+  # inputzip <- paste0 (docfiles [which (startsWith (docfiles, "dictionary_and_input"))], ".zip")
+  # utils::download.file (url = paste0 (ftpdir, "Documentacao/", inputzip), destfile = paste0 (savedir, "/dictionary_and_input.zip"), mode = "wb")
 
-  # utils::download.file ("https://github.com/AlexandreLoures/Census2010Persons/tree/main/auxiliary"
-  #                       , destfile = paste0 (savedir, "/dictionary_and_input.zip"), mode = "wb")
+  utils::download.file (url = "https://github.com/AlexandreLoures/Census2010Persons/tree/main/auxiliary/"
+                       , destfile = paste0 (savedir, "/dictionary_and_input.zip"), mode = "wb")
+  if (suppressWarnings (class (try (utils::unzip (zipfile = paste0 (savedir, "/dictionary_and_input.zip"), exdir = savedir), silent = TRUE)) == "try-error")) {
+    message ("The directory defined to save the download data is denied permission to overwrite the existing files, please clear or change this directory.")
+    return (NULL)
+  }
 
   # utils::download.file ("https://raw.githubusercontent.com/AlexandreLoures/Census2010Persons/main/auxiliary/dictionary_and_input.zip"
   #                       , destfile = paste0 (savedir, "/dictionary_and_input.zip"), mode = "wb")
