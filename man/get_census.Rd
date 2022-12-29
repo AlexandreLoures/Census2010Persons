@@ -4,7 +4,7 @@
 \alias{get_census}
 \title{Download and label for microdata persons 2010 Census}
 \usage{
-get_census(state, vars = NULL, savedir = tempdir())
+get_census(state, coduf, vars = NULL, savedir = tempdir())
 }
 \arguments{
 \item{state}{Vector of the states for which you want to obtain the microdata}

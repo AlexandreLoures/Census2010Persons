@@ -17,7 +17,7 @@
 #'
 #' @export
 
-get_census <- function (state, vars = NULL, savedir = tempdir ()) {
+get_census <- function (state, coduf, vars = NULL, savedir = tempdir ()) {
 
   if (!dir.exists (savedir)) {
     savedir <- tempdir ()
@@ -58,19 +58,19 @@ get_census <- function (state, vars = NULL, savedir = tempdir ()) {
   }
   utils::unzip (zipfile = paste0 (savedir, "/", dataname), exdir = savedir)
 
-  # ftpdir <- ("https://github.com/AlexandreLoures/Census2010Persons/main/auxiliary/")
+  # ftpdir <- ("https://github.com/AlexandreLoures/Census2010Persons/tree/main/auxiliary/")
   # docfiles <- unlist (strsplit (unlist (strsplit (unlist (strsplit (gsub ("\r\n", "\n", RCurl::getURL (paste0 (ftpdir, "Documentacao/"), dirlistonly = TRUE))
-  #                                                                    , "\n")), "<a href = [[:punct:]]")), ".zip"))
+  #                                                                   , "\n")), "<a href = [[:punct:]]")), ".zip"))
 
   # inputzip <- paste0 (docfiles [which (startsWith (docfiles, "dictionary_and_input"))], ".zip")
   # utils::download.file (url = paste0 (ftpdir, "Documentacao/", inputzip), destfile = paste0 (savedir, "/dictionary_and_input.zip"), mode = "wb")
 
   utils::download.file (url = "https://github.com/AlexandreLoures/Census2010Persons/tree/main/auxiliary/dictionary_and_input.zip"
-                       , destfile = paste0 (savedir, "/documentation"), mode = "wb")
+                        , destfile = paste0 (savedir, "/documentation"), mode = "wb")
   # utils::download.file ("https://raw.githubusercontent.com/AlexandreLoures/Census2010Persons/main/auxiliary/dictionary_and_input.zip"
   #                       , destfile = paste0 (savedir, "/dictionary_and_input.zip"), mode = "wb")
   utils::unzip (zipfile = paste0 (savedir, "/documentation"), exdir = savedir)
-  microdataname <- dir (savedir, pattern = paste0 ("^Amostra_Pessoas_", 12, ".*\\.txt$"), ignore.case = FALSE)
+  microdataname <- dir (savedir, pattern = paste0 ("^Amostra_Pessoas_", coduf, ".*\\.txt$"), ignore.case = FALSE)
   microdatafile <- paste0 (savedir, "/", microdataname)
   microdatafile <- rownames (file.info (microdatafile)[order(file.info (microdatafile)$ctime),])[length (microdatafile)]
   inputname <- dir (savedir, pattern = paste0 ("^input.*\\.txt$"), ignore.case = FALSE)
