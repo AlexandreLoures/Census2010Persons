@@ -65,10 +65,8 @@ get_census <- function (state, coduf, vars = NULL, savedir = tempdir ()) {
   # inputzip <- paste0 (docfiles [which (startsWith (docfiles, "dictionary_and_input"))], ".zip")
   # utils::download.file (url = paste0 (ftpdir, "Documentacao/", inputzip), destfile = paste0 (savedir, "/dictionary_and_input.zip"), mode = "wb")
 
-  utils::download.file (url = "https://github.com/AlexandreLoures/Census2010Persons/tree/main/auxiliary/dictionary_and_input.zip"
-                        , destfile = paste0 (savedir, "/documentation"), mode = "wb")
-  # utils::download.file ("https://raw.githubusercontent.com/AlexandreLoures/Census2010Persons/main/auxiliary/dictionary_and_input.zip"
-  #                       , destfile = paste0 (savedir, "/dictionary_and_input.zip"), mode = "wb")
+  utils::download.file ("https://raw.githubusercontent.com/AlexandreLoures/Census2010Persons/main/auxiliary/dictionary_and_input.zip"
+                       , destfile = paste0 (savedir, "/documentation"), mode = "wb")
   utils::unzip (zipfile = paste0 (savedir, "/documentation"), exdir = savedir)
   microdataname <- dir (savedir, pattern = paste0 ("^Amostra_Pessoas_", coduf, ".*\\.txt$"), ignore.case = FALSE)
   microdatafile <- paste0 (savedir, "/", microdataname)
