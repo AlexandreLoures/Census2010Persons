@@ -9,7 +9,7 @@
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/Census2010Persons)](https://cran.r-project.org/package=Census2010Persons)
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![License:
-Mit](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+GPL3](https://img.shields.io/badge/License-GPL3-blue.svg)](https://opensource.org/licenses/GPL3)
 [![Github
 commit](https://img.shields.io/github/last-commit/AlexandreLoures/Census2010Persons)](https://github.com/AlexandreLoures/Census2010Persons/commit/main)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/Census2010Persons?color=blue)](https://cran.r-project.org/package=Census2010Persons)
